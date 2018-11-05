@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chance.crud.dao.UserMapper">
+<resultMap type="com.chance.crud.bean.User" id="myuser">
+	<id column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="age" property="age"/>
+</resultMap>
+	<select id="findUserById" parameterType="int" resultType="com.chance.crud.bean.User">
+		select * from user where id = #{id}
+	</select>
+	<insert id="addUser">
+		insert into user (name,age)values (#{name},#{age})
+	</insert>
+	<update id="updateUserById">
+		update user set name = #{name}  where id = #{id}
+	</update>
+	<delete id="delteUserById">
+		delete from user where id = #{id}
+	</delete>
+	
+	<select id="findUsers" resultMap="myuser">
+		select * from user
+	</select>
+</mapper>
